@@ -9,9 +9,14 @@ day = params.get('d')
 hour = params.get('hour')
 minute = params.get('min')
 second = params.get('sec')
+tz = params.get('tz')
 
 # Check if any date parameters are present
 hasDateParams = year or month or day or hour or minute or second
+
+# Timezone logic
+localTZMinutes = -new Date().getTimezoneOffset()
+targetTZMinutes = if tz then parseInt(tz) else localTZMinutes
 
 # Countdown logic
 if hasDateParams
@@ -43,7 +48,7 @@ if hasDateParams
     m = parseInt(minute)
     if m < 0 then 0 else if m > 59 then 59 else m
   else
-    targetMinute = 0
+    0
 
   targetSecond = if second then parseInt(second) else 0
 
@@ -54,13 +59,16 @@ if hasDateParams
     params.set('y', targetDate.getFullYear())
     params.set('m', targetDate.getMonth() + 1)
     params.set('d', targetDate.getDate())
-    params.set('hour', targetDate.getHours() + targetHour)
-    params.set('min', targetDate.getMinutes() + targetMinute)
-    params.set('sec', targetDate.getSeconds() + targetSecond)
+    params.set('hour', targetDate.getHours())
+    params.set('min', targetDate.getMinutes())
+    params.set('sec', targetDate.getSeconds())
+    params.set('tz', localTZMinutes)
     window.history.replaceState({}, '', "#{window.location.pathname}?#{params}")
     console.log "targetDate: #{targetDate}"
   else
     targetDate = new Date(targetYear, targetMonth, targetDay, targetHour, targetMinute, targetSecond)
+    # Adjust for timezone difference
+    targetDate = new Date(targetDate.getTime() + (localTZMinutes - targetTZMinutes) * 60000)
 
   if isNaN(targetDate.getTime())
     console.error "Invalid date parameters"
