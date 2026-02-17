@@ -59,9 +59,9 @@ if hasDateParams
     params.set('y', targetDate.getFullYear())
     params.set('m', targetDate.getMonth() + 1)
     params.set('d', targetDate.getDate())
-    params.set('hour', targetDate.getHours())
-    params.set('min', targetDate.getMinutes())
-    params.set('sec', targetDate.getSeconds())
+    params.set('hour', targetDate.getHours() + targetHour)
+    params.set('min', targetDate.getMinutes() + targetMinute)
+    params.set('sec', targetDate.getSeconds() + targetSecond)
     params.set('utc', localTZMinutes / 60)
     window.history.replaceState({}, '', "#{window.location.pathname}?#{params}")
     console.log "targetDate: #{targetDate}"
