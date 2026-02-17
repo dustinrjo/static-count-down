@@ -1,0 +1,28 @@
+{
+  "name": "static-count-down",
+  "version": "1.0.0",
+  "description": "A static JS app that takes url parameters and generates an epic countdown clock",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dustinrjo/static-count-down.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dustinrjo/static-count-down/issues"
+  },
+  "homepage": "https://github.com/dustinrjo/static-count-down#readme",
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "gulp": "^5.0.1",
+    "gulp-coffee": "^3.0.3",
+    "gulp-pug": "^5.0.0",
+    "gulp-stylus": "^3.0.1"
+  }
+}
