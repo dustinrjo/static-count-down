@@ -1,5 +1,5 @@
 // Get URL parameters
-var day, h, hasDateParams, hour, interval, m, messages, minute, month, now, params, randomMessage, second, targetDate, targetDay, targetHour, targetMinute, targetMonth, targetSecond, targetYear, title, updateCountdown, year;
+var day, h, hasDateParams, hour, infoCard, infoToggle, interval, m, messages, minute, month, now, params, randomMessage, second, targetDate, targetDay, targetHour, targetMinute, targetMonth, targetSecond, targetYear, title, updateCountdown, year;
 
 params = new URLSearchParams(window.location.search);
 
@@ -97,3 +97,12 @@ if (title) {
     document.querySelector('h1').textContent = randomMessage;
   }
 }
+
+// Info toggle
+infoToggle = document.getElementById('info-toggle');
+
+infoCard = document.getElementById('info-card');
+
+infoToggle.addEventListener('click', function() {
+  return infoCard.classList.toggle('hidden');
+});
