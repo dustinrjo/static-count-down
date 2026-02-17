@@ -1,5 +1,5 @@
 // Get URL parameters
-var day, h, hasDateParams, hour, interval, localTZMinutes, m, messages, minute, month, now, params, randomMessage, second, targetDate, targetDay, targetHour, targetMinute, targetMonth, targetSecond, targetTZMinutes, targetYear, title, tz, updateCountdown, year;
+var day, h, hasDateParams, hour, interval, localTZMinutes, m, messages, minute, month, now, params, randomMessage, second, targetDate, targetDay, targetHour, targetMinute, targetMonth, targetSecond, targetTZHours, targetYear, title, updateCountdown, utc, year;
 
 params = new URLSearchParams(window.location.search);
 
@@ -18,7 +18,7 @@ minute = params.get('min');
 
 second = params.get('sec');
 
-tz = params.get('tz');
+utc = params.get('utc');
 
 // Check if any date parameters are present
 hasDateParams = year || month || day || hour || minute || second;
@@ -26,7 +26,7 @@ hasDateParams = year || month || day || hour || minute || second;
 // Timezone logic
 localTZMinutes = -new Date().getTimezoneOffset();
 
-targetTZMinutes = tz ? parseInt(tz) : localTZMinutes;
+targetTZHours = utc ? parseFloat(utc) : localTZMinutes / 60;
 
 // Countdown logic
 if (hasDateParams) {
@@ -56,13 +56,13 @@ if (hasDateParams) {
     params.set('hour', targetDate.getHours());
     params.set('min', targetDate.getMinutes());
     params.set('sec', targetDate.getSeconds());
-    params.set('tz', localTZMinutes);
+    params.set('utc', localTZMinutes / 60);
     window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
     console.log(`targetDate: ${targetDate}`);
   } else {
     targetDate = new Date(targetYear, targetMonth, targetDay, targetHour, targetMinute, targetSecond);
     // Adjust for timezone difference
-    targetDate = new Date(targetDate.getTime() + (localTZMinutes - targetTZMinutes) * 60000);
+    targetDate = new Date(targetDate.getTime() + (localTZMinutes - targetTZHours * 60) * 60000);
   }
   if (isNaN(targetDate.getTime())) {
     console.error("Invalid date parameters");
