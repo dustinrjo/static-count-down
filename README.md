@@ -25,16 +25,16 @@ You can customize the countdown by adding the following parameters to the URL:
 https://your-site.github.io/?title=Christmas&y=2026&m=12&d=25
 ```
 
-**Next Month (April 1st)**
-Assuming it's currently March:
+**April Fools (April 1st)**
+For the current year.
 ```
 https://your-site.github.io/?title=April%20Fools&m=4&d=1
 ```
 
-**Countdown to 5:30 PM Today**
-```
-https://your-site.github.io/?title=Quitting%20Time&hour=17&min=30
-```
+**Countdown to 24 hours from whenever the link is opened**
+
+[https://dustinrjo.github.io/static-count-down/?title=Free%20Beer&hour=24](https://dustinrjo.github.io/static-count-down/?title=Free%20Beer&hour=24)
+
 
 **Just a Title**
 If you only provide a title, it will show the title but no countdown (unless date params are also present).
