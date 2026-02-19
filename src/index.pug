@@ -20,4 +20,18 @@ html(lang="en")
       #seconds
         span.value
         span.label
+
+    #info-card.hidden
+      p
+        strong Parameters:
+        br
+        | title: Text to display
+        br
+        | y, m, d: Year, Month, Day
+        br
+        | hour, min, sec: Hour, Minute, Second
+      p Note: If you clear date fields and only use time, it generates a countdown from now.
+
+    button#info-toggle info
+
     script(src="js/main.js")

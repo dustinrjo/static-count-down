@@ -112,3 +112,10 @@ else
   params.set('title', randomMessage)
   unless title
     document.querySelector('h1').textContent = randomMessage
+
+# Info toggle
+infoToggle = document.getElementById('info-toggle')
+infoCard = document.getElementById('info-card')
+
+infoToggle.addEventListener 'click', ->
+  infoCard.classList.toggle('hidden')
